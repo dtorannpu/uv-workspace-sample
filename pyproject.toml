@@ -23,3 +23,65 @@ dev = [
     { include-group = "type" },
     "pre-commit>=4.3.0",
 ]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+exclude = []
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+    "-ra",
+    "-q",
+    "-s",
+    "--import-mode=importlib",
+]
+testpaths = [
+    "**/tests",
+    "**/integration",
+]
+
+[tool.ruuf]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E", "W",
+    "F",
+    "I",
+    "N",
+    "UP",
+    "B"
+]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.tox]
+requires = ["tox>=4.19"]
+env_list = ["format", "type", "3.13"]
+
+[tool.tox.env.format]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["lint"]
+commands = [["ruff", "format", "."], ["ruff", "check", "--fix", "."]]
+
+[tool.tox.env.format-check]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["lint"]
+commands = [["ruff", "format", "--check", "."], ["ruff", "check", "."]]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["test"]
+commands = [["pytest"]]
+
+[tool.tox.env.type]
+runner = "uv-venv-lock-runner"
+dependency_groups = ["type"]
+commands = [
+    ["mypy", "--explicit-package-bases", "packages/"],
+]

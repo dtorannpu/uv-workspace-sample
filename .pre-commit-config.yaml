@@ -1,14 +1,16 @@
 repos:
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: a113f03edeabb71305f025e6e14bd2cd68660e29  # frozen: v0.13.1
-  hooks:
-    # Run the linter.
-    - id: ruff-check
-      args: [ --fix ]
-    # Run the formatter.
-    - id: ruff-format
--   repo: https://github.com/pre-commit/mirrors-mypy
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: a113f03edeabb71305f025e6e14bd2cd68660e29  # frozen: v0.13.1
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/mirrors-mypy
     rev: '9f70dc58c23dfcca1b97af99eaeee3140a807c7e'  # frozen: v1.18.2
     hooks:
-    -   id: mypy
+      - id: mypy
+        args: [ --explicit-package-bases ]
+        files: ^packages/
