@@ -14,11 +14,11 @@ lint = [
     "ruff>=0.13.1",
 ]
 type = [
+    { include-group = "test" },
     "mypy>=1.18.2",
 ]
 
 dev = [
-    { include-group = "test" },
     { include-group = "lint" },
     { include-group = "type" },
     "pre-commit>=4.3.0",
@@ -29,6 +29,11 @@ members = ["packages/*"]
 exclude = []
 
 [tool.pytest.ini_options]
+pythonpath = [
+    "packages/common/src",
+    "packages/sample1/src",
+    "packages/sample2/src",
+]
 minversion = "6.0"
 addopts = [
     "-ra",
@@ -41,7 +46,7 @@ testpaths = [
     "**/integration",
 ]
 
-[tool.ruuf]
+[tool.ruff]
 line-length = 88
 target-version = "py313"
 
@@ -59,6 +64,13 @@ ignore = ["E501"]
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
+[tool.mypy]
+mypy_path = [
+    "packages/common/src",
+    "packages/sample1/src",
+    "packages/sample2/src",
+]
 
 [tool.tox]
 requires = ["tox>=4.19"]
