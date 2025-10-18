@@ -3,7 +3,7 @@ name = "uv-workspace-sample"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = []
 
 [dependency-groups]
@@ -74,7 +74,7 @@ mypy_path = [
 
 [tool.tox]
 requires = ["tox>=4.19"]
-env_list = ["format", "type", "3.13"]
+env_list = ["format", "type", "3.14"]
 
 [tool.tox.env.format]
 runner = "uv-venv-lock-runner"
