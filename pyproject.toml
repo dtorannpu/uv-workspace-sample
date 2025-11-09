@@ -8,10 +8,10 @@ dependencies = []
 
 [dependency-groups]
 test = [
-    "pytest>=8.4.2",
+    "pytest>=9.0.0",
 ]
 lint = [
-    "ruff>=0.13.1",
+    "ruff>=0.14.4",
 ]
 type = [
     { include-group = "test" },
@@ -21,7 +21,7 @@ type = [
 dev = [
     { include-group = "lint" },
     { include-group = "type" },
-    "pre-commit>=4.3.0",
+    "pre-commit>=4.4.0",
 ]
 
 [tool.uv.workspace]
